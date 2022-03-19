@@ -1,1 +1,3 @@
-"# timer" 
+# Timer
+
+## Just a timer.
