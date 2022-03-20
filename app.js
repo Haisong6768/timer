@@ -1,6 +1,7 @@
 const text = document.getElementById("text");
 const regex = new RegExp("^[0-9]$");
 let running = false;
+let paused = false;
 let digits = [0, 0, 0, 0, 0, 0];
 let initialDigits = [];
 let currentSecond = 0;
@@ -79,14 +80,13 @@ function onStart() {
     console.log("start");
     initialDigits = [0, 0, 0, 0, 0, 0].concat(digits.slice(-6));
     running = true;
+    paused = false;
     currentSecond = parseDigits();
-    timerInterval = setInterval(() => {
-      currentSecond--;
-      if (currentSecond === 0) {
-        endTimer();
-      }
-      updateScreen();
-    }, 1000);
+    if (currentSecond === 0) {
+      endTimer();
+    } else {
+      startTimer();
+    }
   }
 }
 function onReset() {
@@ -99,11 +99,27 @@ function onReset() {
   updateScreen();
 }
 function togglePause() {
-  if (running) {
-    console.log("toggle pause");
+  if (running && paused) {
+    console.log("resume");
+    startTimer();
+    paused = false;
+  } else {
+    clearInterval(timerInterval);
+    paused = true;
   }
 }
 function endTimer() {
   console.log("EXPLOSION!!!");
   clearInterval(timerInterval);
+  running = false;
+}
+function startTimer() {
+  console.log("timer started");
+  timerInterval = setInterval(() => {
+    currentSecond--;
+    if (currentSecond === 0) {
+      endTimer();
+    }
+    updateScreen();
+  }, 1000);
 }
