@@ -1,0 +1,30 @@
+@font-face {
+  font-family: Seven Segment;
+  src: url(./assets/Seven\ Segment.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div.image {
+  position: relative;
+  margin: 5rem;
+}
+
+img {
+  position: absolute;
+  max-width: 100%;
+  height: auto;
+}
+
+h1.time {
+  position: absolute;
+  color: orangered;
+  text-shadow: 0px 0px 10px red;
+  font-family: Seven Segment;
+  font-size: calc((100vw - 10rem) / 22);
+  padding-left: 46.75%;
+  padding-top: 15%;
+}

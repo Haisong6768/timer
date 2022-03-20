@@ -1,4 +1,4 @@
-const text = document.getElementById("text");
+const text = document.getElementById("time");
 const regex = new RegExp("^[0-9]$");
 let running = false;
 let paused = false;
@@ -116,10 +116,11 @@ function endTimer() {
 function startTimer() {
   console.log("timer started");
   timerInterval = setInterval(() => {
-    currentSecond--;
     if (currentSecond === 0) {
       endTimer();
+    } else {
+      currentSecond--;
+      updateScreen();
     }
-    updateScreen();
   }, 1000);
 }
