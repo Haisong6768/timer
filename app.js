@@ -1,34 +1,49 @@
 const text = document.getElementById("text");
 const regex = new RegExp("^[0-9]$");
+let running = false;
+let digits = [0, 0, 0, 0, 0, 0];
+let seconds = 0;
 
 const onKeyPress = (e) => {
-  console.log();
   text.innerText = e.key;
-  switch (e.key) {
+  parseKey(e.key);
+};
+document.addEventListener("keydown", onKeyPress);
+
+function parseKey(key) {
+  switch (key) {
     case "Backspace":
       onBackspace();
       break;
     case "Enter":
       onStart();
       break;
+    case "x":
+      onReset();
+      break;
+    case " ":
+      togglePause();
+      break;
     default:
-      if (regex.test(e.key)) {
-        console.log(parseInt(e.key));
+      if (regex.test(key)) {
+        console.log(parseInt(key));
       }
       break;
   }
-};
-
-document.addEventListener("keydown", onKeyPress);
-
-function onClear() {
-  console.log("clear");
 }
-
+function parseTime(seconds) {}
+function onBackspace() {
+  console.log("backspace");
+}
 function onStart() {
   console.log("start");
 }
-
-function onBackspace() {
-  console.log("backspace");
+function togglePause() {
+  console.log("toggle pause");
+}
+function onClear() {
+  console.log("clear");
+}
+function onReset() {
+  console.log("reset");
 }
