@@ -1,5 +1,8 @@
 const text = document.getElementById("time");
 const regex = new RegExp("^[0-9]$");
+const beep = new Audio("./assets/beep.mp3");
+const plant = new Audio("./assets/plant.mp3");
+const defuse = new Audio("./assets/defuse.mp3");
 let running = false;
 let paused = false;
 let digits = [0, 0, 0, 0, 0, 0];
@@ -28,6 +31,8 @@ function parseKey(key) {
       break;
     default:
       if (regex.test(key) && !running) {
+        beep.currentTime = 0;
+        beep.play();
         digits.push(parseInt(key));
         updateScreen();
       }
@@ -84,12 +89,17 @@ function onStart() {
     if (currentSecond === 0) {
       endTimer();
     } else {
+      plant.currentTime = 0;
+      plant.play();
+      updateScreen();
       startTimer();
     }
   }
 }
 function onReset() {
   if (running) {
+    defuse.currentTime = 0;
+    defuse.play();
     clearInterval(timerInterval);
     digits = initialDigits.slice();
     running = false;
