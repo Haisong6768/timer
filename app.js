@@ -77,11 +77,10 @@ function onBackspace() {
 }
 function onStart() {
   if (!running) {
-    console.log("start");
     initialDigits = [0, 0, 0, 0, 0, 0].concat(digits.slice(-6));
+    currentSecond = parseDigits();
     running = true;
     paused = false;
-    currentSecond = parseDigits();
     if (currentSecond === 0) {
       endTimer();
     } else {
@@ -90,7 +89,6 @@ function onStart() {
   }
 }
 function onReset() {
-  console.log("reset");
   if (running) {
     clearInterval(timerInterval);
     digits = initialDigits.slice();
@@ -102,21 +100,18 @@ function onReset() {
 }
 function togglePause() {
   if (running && paused) {
-    console.log("resume");
     startTimer();
     paused = false;
-  } else {
+  } else if (running && !paused) {
     clearInterval(timerInterval);
     paused = true;
   }
 }
 function endTimer() {
-  console.log("EXPLOSION!!!");
   clearInterval(timerInterval);
   running = false;
 }
 function startTimer() {
-  console.log("timer started");
   timerInterval = setInterval(() => {
     if (currentSecond === 0) {
       endTimer();
