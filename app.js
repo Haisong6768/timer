@@ -93,9 +93,11 @@ function onReset() {
   console.log("reset");
   if (running) {
     clearInterval(timerInterval);
+    digits = initialDigits.slice();
+    running = false;
+  } else {
+    digits = [0, 0, 0, 0, 0, 0];
   }
-  digits = initialDigits.slice();
-  running = false;
   updateScreen();
 }
 function togglePause() {
