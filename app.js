@@ -5,11 +5,14 @@ let digits = [0, 0, 0, 0, 0, 0];
 let seconds = 0;
 
 const onKeyPress = (e) => {
-  text.innerText = e.key;
   parseKey(e.key);
+  console.log(digits);
 };
 document.addEventListener("keydown", onKeyPress);
 
+function updateScreen(s) {
+  text.innerText = parseTime(parseInt(s));
+}
 function parseKey(key) {
   switch (key) {
     case "Backspace":
@@ -27,11 +30,21 @@ function parseKey(key) {
     default:
       if (regex.test(key)) {
         console.log(parseInt(key));
+        updateScreen(key);
       }
       break;
   }
 }
-function parseTime(seconds) {}
+function parseTime(_s) {
+  let s = _s >= 360000 ? 359999 : _s;
+  let hours = Math.floor(s / 3600);
+  let minutes = Math.floor((s % 3600) / 60);
+  let seconds = Math.floor((s % 3600) % 60);
+  hours = hours < 10 ? "0" + hours.toString() : hours.toString();
+  minutes = minutes < 10 ? "0" + minutes.toString() : minutes.toString();
+  seconds = seconds < 10 ? "0" + seconds.toString() : seconds.toString();
+  return `${hours}:${minutes}:${seconds}`;
+}
 function onBackspace() {
   console.log("backspace");
 }
