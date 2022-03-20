@@ -30,10 +30,18 @@ function parseKey(key) {
     default:
       if (regex.test(key)) {
         console.log(parseInt(key));
+        digits.push(parseInt(key));
         updateScreen(key);
       }
       break;
   }
+}
+function parseDigits() {
+  let result =
+    (digits[digits.length - 6] * 10 + digits[digits.length - 5]) * 3600 +
+    (digits[digits.length - 4] * 10 + digits[digits.length - 3]) * 60 +
+    (digits[digits.length - 2] * 10 + digits[digits.length - 1]);
+  return result;
 }
 function parseTime(_s) {
   let s = _s >= 360000 ? 359999 : _s;
