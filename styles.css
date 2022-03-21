@@ -59,3 +59,18 @@ video {
   height: auto;
   width: 100%;
 }
+
+p {
+  position: fixed;
+  bottom: 0;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+p.bottom-left {
+  left: 0;
+}
+
+p.bottom-right {
+  right: 0;
+}

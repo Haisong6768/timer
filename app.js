@@ -103,6 +103,8 @@ function onStart() {
     if (currentSecond === 0) {
       endTimer();
     } else {
+      beep.currentTime = 0;
+      beep.play();
       plant.currentTime = 0;
       plant.play();
       updateScreen();
@@ -111,6 +113,8 @@ function onStart() {
   }
 }
 function onReset() {
+  beep.currentTime = 0;
+  beep.play();
   if (running) {
     defuse.currentTime = 0;
     defuse.play();
@@ -123,12 +127,16 @@ function onReset() {
   updateScreen();
 }
 function togglePause() {
-  if (running && paused) {
-    startTimer();
-    paused = false;
-  } else if (running && !paused) {
-    clearInterval(timerInterval);
-    paused = true;
+  if (running) {
+    beep.currentTime = 0;
+    beep.play();
+    if (paused) {
+      startTimer();
+      paused = false;
+    } else if (!paused) {
+      clearInterval(timerInterval);
+      paused = true;
+    }
   }
 }
 function endTimer() {
@@ -140,8 +148,12 @@ function startTimer() {
     currentSecond--;
     updateScreen();
     if (currentSecond === 0) {
-      endTimer();
-      explode();
+      beep.currentTime = 0;
+      beep.play();
+      setTimeout(() => {
+        endTimer();
+        explode();
+      }, 500);
     }
   }, 1000);
 }
