@@ -8,11 +8,31 @@
   padding: 0;
 }
 
-div.image {
+html {
+  min-height: 100vh;
+}
+
+h1.heading {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10vh;
+  padding-top: 10vh;
+  padding-bottom: 0;
+}
+
+div.overflow {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+div#timer {
   position: relative;
-  margin: 5vw;
-  max-width: 100%;
-  height: auto;
+  margin: 5vh 5vw 5vh 5vw;
+  width: 90vw;
+  height: 70vh;
+  padding-top: auto;
+  padding-bottom: auto;
 }
 
 img {
@@ -29,4 +49,13 @@ h1.time {
   font-size: calc(90vw / 22);
   padding-left: 46.75%;
   padding-top: 15%;
+}
+
+div#explosion {
+  display: none;
+}
+
+video {
+  height: auto;
+  width: 100%;
 }

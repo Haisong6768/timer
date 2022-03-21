@@ -9,9 +9,17 @@
     <title>Timer</title>
   </head>
   <body>
-    <div class="image">
-      <img src="./assets/bomb.png" alt="A BOMB" />
-      <h1 id="time" class="time">00:00:00</h1>
+    <div class="overflow" id="timer-overflow">
+      <h1 class="heading">The Bomb Timer</h1>
+      <div id="timer">
+        <img src="./assets/bomb.png" alt="A BOMB" />
+        <h1 id="time" class="time">00:00:00</h1>
+      </div>
+    </div>
+    <div id="explosion">
+      <div class="overflow">
+        <video muted preload="auto" id="video" src="./assets/video.mkv"></video>
+      </div>
     </div>
   </body>
 </html>

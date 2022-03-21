@@ -1,10 +1,15 @@
 const text = document.getElementById("time");
+const timerDiv = document.getElementById("timer-overflow");
+const explosion = document.getElementById("explosion");
+const video = document.getElementById("video");
+const audio = new Audio("./assets/audio.mp3");
 const regex = new RegExp("^[0-9]$");
 const beep = new Audio("./assets/beep.mp3");
 const plant = new Audio("./assets/plant.mp3");
 const defuse = new Audio("./assets/defuse.mp3");
 let running = false;
 let paused = false;
+let bombing = false;
 let digits = [0, 0, 0, 0, 0, 0];
 let initialDigits = [];
 let currentSecond = 0;
@@ -16,27 +21,36 @@ const onKeyPress = (e) => {
 document.addEventListener("keydown", onKeyPress);
 
 function parseKey(key) {
-  switch (key) {
-    case "Backspace":
-      onBackspace();
-      break;
-    case "Enter":
-      onStart();
-      break;
-    case "x":
-      onReset();
-      break;
-    case " ":
-      togglePause();
-      break;
-    default:
-      if (regex.test(key) && !running) {
-        beep.currentTime = 0;
-        beep.play();
-        digits.push(parseInt(key));
-        updateScreen();
-      }
-      break;
+  if (!bombing) {
+    switch (key) {
+      case "Backspace":
+        onBackspace();
+        break;
+      case "Enter":
+        onStart();
+        break;
+      case "x":
+        onReset();
+        break;
+      case " ":
+        togglePause();
+        break;
+      default:
+        if (regex.test(key) && !running) {
+          beep.currentTime = 0;
+          beep.play();
+          digits.push(parseInt(key));
+          updateScreen();
+        }
+        break;
+    }
+  } else {
+    video.pause();
+    audio.pause();
+    explosion.style.display = "none";
+    timerDiv.style.display = "block";
+    bombing = false;
+    updateScreen();
   }
 }
 function updateScreen() {
@@ -125,9 +139,27 @@ function startTimer() {
   timerInterval = setInterval(() => {
     if (currentSecond === 0) {
       endTimer();
+      explode();
     } else {
       currentSecond--;
       updateScreen();
     }
   }, 1000);
 }
+function explode() {
+  bombing = true;
+  timerDiv.style.display = "none";
+  explosion.style.display = "block";
+  video.currentTime = 0;
+  video.play();
+  audio.currentTime = 0;
+  audio.play();
+}
+
+video.addEventListener("ended", () => {
+  console.log("ended");
+  explosion.style.display = "none";
+  timerDiv.style.display = "block";
+  bombing = false;
+  updateScreen();
+});
