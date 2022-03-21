@@ -21,10 +21,10 @@ This is designed for educational purposes only.
 - May not work in certain browsers
 
 Please let me know if there are any other bugs, I really appreciate it!
-
+<br/>
 <br/>
 Have fun getting nuked!
-
+<br/>
 <br/>
 Regards,
 
