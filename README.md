@@ -2,10 +2,13 @@
 
 **_Just a timer <del>full of bugs</del>._**
 
+URL: https://haisong6768.github.io/timer/
+
 This is designed for educational purposes only.
 
 ## How to use
 
+- Press "F11" to enter/exit fullscreen mode for optimal experience
 - Input numbers to set the time
 - Press "Backspace" to detele the last digit
 - Press "x" before the timer starts to reset it
