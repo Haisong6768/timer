@@ -168,7 +168,6 @@ function explode() {
 }
 
 video.addEventListener("ended", () => {
-  console.log("ended");
   explosion.style.display = "none";
   timerDiv.style.display = "block";
   bombing = false;
