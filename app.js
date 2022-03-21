@@ -137,12 +137,11 @@ function endTimer() {
 }
 function startTimer() {
   timerInterval = setInterval(() => {
+    currentSecond--;
+    updateScreen();
     if (currentSecond === 0) {
       endTimer();
       explode();
-    } else {
-      currentSecond--;
-      updateScreen();
     }
   }, 1000);
 }
